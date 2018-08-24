@@ -1,32 +1,43 @@
 .header-block {
-    background-color: #333;
+  background-color: #333;
 }
 
 .block-title {
-    color: #ccc;
+  color: #ccc;
 }
 
 .sub-title {
-    color: #ccc;
+  color: #ccc;
 }
 
 .row {
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-    margin-top: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10px;
 }
 
-.fa-trash:hover {
-    cursor: pointer;
-    background-color: #fafafa;
+.row:hover .btn {
+  cursor: pointer;  
+  background-color: #fafafa;
+  display: inline-block !important;
 }
+
+.row:hover {
+  cursor: pointer;  
+  background-color: #fafafa;
+}
+
+.btn {
+  display: none !important;
+}
+
+
 
 .title {
-    color: #333;
-    font-size: 13pt; 
+  color: #333;
+  font-size: 13pt;
 }
 
 .author {
-    color: #999;
+  color: #999;
 }
-
