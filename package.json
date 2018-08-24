@@ -1,0 +1,22 @@
+{
+  "name": "reigndesign-test",
+  "version": "1.0.0",
+  "description": "This test is made to get the position of Node.js Developer at Reign Design",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "nodemon": "nodemon server.js"
+  },
+  "author": "Andres Meneses",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1"
+  }
+}
