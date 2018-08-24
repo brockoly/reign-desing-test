@@ -47,6 +47,7 @@ exports.saveLiveNews = async () => {
         let url = '';
         title = d.title === null ? d.story_title : d.title;
         url = d.url === null ? d.story_url : d.url;
+        // discard news if there is no title and url
         if (title && url) {
           const reducedData = {
             created_at: d.created_at,
