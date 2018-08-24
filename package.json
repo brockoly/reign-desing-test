@@ -1,10 +1,10 @@
 {
   "name": "reigndesign-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This test is made to get the position of Node.js Developer at Reign Design",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "nodemon": "nodemon server.js"
   },
   "author": "Andres Meneses",
@@ -16,6 +16,7 @@
     "express": "^4.16.3",
     "moment": "^2.22.2",
     "mongoose": "^5.0.15",
+    "node-cron": "^1.2.1",
     "pug": "^2.0.3",
     "request": "^2.88.0"
   },
