@@ -1,21 +1,32 @@
 const mongoose = require('mongoose');
-const news = require('../models/news');
+const request = require('request');
 const dateformat = require('dateformat');
 const moment = require('moment');
-const request = require('request');
+const news = require('../models/news');
+
+const prettyDate = (date) => {
+  // date formatting
+  const currentDate = dateformat(new Date(), 'isoDateTime');
+  const newsDate = dateformat(date, 'isoDateTime');
+  // yesterdays date formated as m/d/y
+  const yesterday = dateformat(moment(currentDate).subtract(1, 'day'), 'shortDate'); 
+  const diff = moment(currentDate).diff(newsDate, 'hours'); 
+  if (yesterday !== dateformat(newsDate, 'shortDate') && diff <= 24) { 
+    return dateformat(newsDate, 'shortTime');
+  } else if (yesterday === dateformat(newsDate, 'shortDate')) {
+    return 'Yesterday';
+  } else {
+    return dateformat(newsDate, 'mmm d');
+  }
+}
 
 exports.all = async () => {
+  // Listing all news with status true
   try {
-    const allNews = await news.find({ status: true }).sort({ created_at: -1 }); // List all news in the db that are available
+    const allNews = await news.find({ status: true }).sort({ created_at: -1 });
+    const currentDate = dateformat(new Date(), 'isoDateTime');
     for (const n of allNews) {
-      const diff = moment(new Date()).diff(n.created_at, 'days');
-      if (diff === 0) {
-        n.created_at = dateformat(n.created_at, 'shortTime');
-      } else if (diff === 1) {
-        n.created_at = 'Yesterday';
-      } else {
-        n.created_at = dateformat(n.created_at, 'mmm, d');
-      }
+      n.created_at = prettyDate(n.created_at);
     }
     return allNews;
   } catch (err) {
@@ -23,7 +34,7 @@ exports.all = async () => {
   }
 };
 
-exports.saveLiveNews = async (req, res) => {
+exports.saveLiveNews = async () => {
   request('https://hn.algolia.com/api/v1/search_by_date?query=nodejs', async (error, response, body) => {
     try {
       if (error) {
@@ -54,10 +65,10 @@ exports.saveLiveNews = async (req, res) => {
       }
     } catch (err) {
       console.log('Error: ' + err);
-      return res.status(200).json({ success: false });
+      return { success: false };
     }
   });
-  return res.status(200).json({ success: true });
+  return { success: true };
 };
 
 exports.disableArticle = async (req, res) => {

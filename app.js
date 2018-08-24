@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+const cron = require('./controllers/cronController');
 
 app.use(bodyParser.json());
 require('./routes')(app);
@@ -20,5 +21,7 @@ const db = mongoose.connection;
 db.once('open', () => {
   console.log('connection OK!');
 });
+
+cron.startWatch();
 
 module.exports = app;

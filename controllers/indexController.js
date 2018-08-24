@@ -4,7 +4,7 @@ const news = require('../controllers/newsController');
 exports.index = async (req, res) => {
   const allNews = await news.all();
   const data = {
-    title: 'Test',
+    title: 'Reing Design',
     headerTitle: 'HN Feed',
     subTitle: 'We <3 hacker news!',
     allNews
