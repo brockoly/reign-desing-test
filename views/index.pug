@@ -16,7 +16,7 @@ html(lang='en')
     div(class='container')
       each val in allNews
         - var url = val.story_url === null ? val.url : val.story_url
-        div(class='row')
+        div(class='row', onclick=`window.open('${val.url}');`)
           div(class='col')
             p
               span(class='title')= val.title
