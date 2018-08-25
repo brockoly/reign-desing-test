@@ -16,7 +16,13 @@ app.set('view engine', 'pug');
 
 mongoose.Promise = Promise;
 
-mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
+if (process.env.DB_PASSWORD && process.env.DB_PASSWORD !== 'null') {
+  console.log('Production');
+  mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`);
+} else {
+  console.log('Local');
+  mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
+}
 
 const db = mongoose.connection;
 

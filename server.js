@@ -2,7 +2,7 @@ const app = require('./app');
 const http = require('http');
 
 const server = http.createServer(app);
-const port = process.env.PORT;
+const port = 8081;
 
 app.set('port', port);
 
