@@ -1,6 +1,6 @@
 {
   "name": "reigndesign-test",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "This test is made to get the position of Node.js Developer at Reign Design",
   "main": "app.js",
   "scripts": {
