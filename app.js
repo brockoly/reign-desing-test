@@ -7,7 +7,7 @@ const app = express();
 const cron = require('./controllers/cronController');
 
 app.use(bodyParser.json());
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/static', express.static(path.join(__dirname, 'public')));
 require('./routes')(app);
 
 
@@ -16,11 +16,11 @@ app.set('view engine', 'pug');
 
 mongoose.Promise = Promise;
 
-if (process.env.DB_PASSWORD && process.env.DB_PASSWORD !== 'null') {
-  console.log('Production');
+if (process.env.ENVIRONMENT === 'production') {
+  console.log('Environment:', process.env.ENVIRONMENT);
   mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`);
-} else {
-  console.log('Local');
+} else if (process.env.ENVIRONMENT === 'development') {
+  console.log('Environment:', process.env.ENVIRONMENT);
   mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
 }
 
@@ -28,8 +28,8 @@ const db = mongoose.connection;
 
 db.once('open', () => {
   console.log('connection OK!');
+  cron.startWatch();
 });
 
-cron.startWatch();
 
 module.exports = app;
