@@ -30,7 +30,7 @@ To be able to connect to MongoDB you must add environment variables creating a f
 DB_HOST = your_host
 DB_PORT = 27017
 DB_NAME = reigndesign
-DB_ENVIRONMENT = development
+ENVIRONMENT = development
 ```
 
 Then you can start the web app and server with the following command on the terminal:
