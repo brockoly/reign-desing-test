@@ -1,6 +1,12 @@
 # Reign Design Node.js Developer test
-This project is made to obtein the postition Node.js Developer at Reign Design.
 
+This project is made to obtain the postition of Node.js Developer at [Reign Design](https://www.reigndesign.com/).  
+
+It is required to make a web aplication using Node.js and related technologies.
+
+The server needs to run a process that request data of an [API](https://hn.algolia.com/api/v1/search_by_date?query=nodejs) from Hacker News.
+
+The web app will open an article by clicking in a row and remove an article by clicking the trash icon, once an article is removed it should not appeard even if the data is updated.
 
 ## Getting Started
 ### Installation
@@ -18,13 +24,23 @@ This will automatically add a node_modules folder into the project and install e
 
 ## Running and testing the web server
 
-Once NPM finish installing you can start the web server with the following command on the terminal:
+To be able to connect to MongoDB you must add environment variables creating a file .env on the root of the project and add the following variables:
+
+```
+DB_HOST = your_host
+DB_PORT = 27017
+DB_NAME = reigndesign
+```
+
+Then you can start the web app and server with the following command on the terminal:
 ```
 npm start
 ```
-This command will start you web server on your [localhost:3000](http://localhost:3000).
+This command will start you web app and server on your [localhost:8081](http://localhost:8081).
 
+## Aditional comments
 
+A demo of the web app is also available in AWS at this [link](http://reigndesign-env.dykrd2yfus.us-east-1.elasticbeanstalk.com/).
 
 ## Built With
 
