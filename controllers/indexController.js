@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const news = require('../controllers/newsController');
 
 exports.index = async (req, res) => {
